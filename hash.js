@@ -7,4 +7,4 @@ async function run() {
     console.log(hashes);
 };
 
-run();
+run(); 
