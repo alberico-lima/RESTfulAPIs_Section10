@@ -1,3 +1,4 @@
+const config = require('config');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
@@ -10,6 +11,11 @@ const auth = require('./routes/auth');
 const express = require('express');
 
 const app = express();
+
+if (!config.get('jwtPrivateKey')) {
+  console.error('FATAL ERROR: jwtPrivatKey is not defined ');
+  process.exit(1);
+};
 
 mongoose.connect('mongodb://fid:fid0201@ds119343.mlab.com:19343/itst')
   .then(() => console.log('Connected to MongoDB...'))
